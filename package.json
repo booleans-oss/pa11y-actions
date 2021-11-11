@@ -28,10 +28,12 @@
   "dependencies": {
     "@actions/core": "^1.6.0",
     "@actions/github": "^5.0.0",
-    "axios": "^0.24.0"
+    "axios": "^0.24.0",
+    "pa11y": "^6.1.0"
   },
   "devDependencies": {
     "@types/node": "^16.11.7",
+    "@types/pa11y": "^5.3.3",
     "@typescript-eslint/parser": "^5.3.1",
     "@vercel/ncc": "^0.31.1",
     "eslint": "^8.2.0",
