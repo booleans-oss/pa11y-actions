@@ -8,8 +8,6 @@ export default async function sendWebhook(
   payload: WebhookPayload
 ): Promise<void> {
   try {
-    // eslint-disable-next-line no-console
-    console.log(payload, fetchEmbed(payload))
     await axios.post(url, {embeds: [fetchEmbed(payload)]})
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (error: any) {

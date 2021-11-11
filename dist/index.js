@@ -133,8 +133,6 @@ const core_1 = __nccwpck_require__(2186);
 function sendWebhook(url, payload) {
     return __awaiter(this, void 0, void 0, function* () {
         try {
-            // eslint-disable-next-line no-console
-            console.log(payload, (0, fetch_embed_1.default)(payload));
             yield axios_1.default.post(url, { embeds: [(0, fetch_embed_1.default)(payload)] });
             // eslint-disable-next-line @typescript-eslint/no-explicit-any
         }
