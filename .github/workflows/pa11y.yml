@@ -1,4 +1,4 @@
-name: 'build-test'
+name: 'payy1'
 on:
   pull_request:
   push:
@@ -20,4 +20,5 @@ jobs:
         run: npm install && npm i -g pm2
       - uses: ./
         with:
+          port: '3000'
           start: 'app:start'

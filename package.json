@@ -1,8 +1,8 @@
 {
-  "name": "hackaton-action",
-  "version": "0.0.0",
+  "name": "pa11y-actions",
+  "version": "1.0.0",
   "private": true,
-  "description": "Github Actions for Hackaton",
+  "description": "Github Actions for the accessibility package Pa11y.",
   "main": "lib/main.js",
   "scripts": {
     "build": "tsc",
