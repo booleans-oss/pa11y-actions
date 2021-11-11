@@ -15,7 +15,7 @@ jobs:
       - uses: actions/checkout@v2
       - run: 'npm install'
       - run: npm i -g pm2
-      - run: pm2 start npm --name 'pa11y' -- run $start
+      - run: pm2 start npm --name 'pa11y' -- run ${{ env.start }}
       - uses: ./
         with:
           start: 'app:start'
