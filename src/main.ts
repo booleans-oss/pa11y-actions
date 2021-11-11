@@ -12,7 +12,12 @@ async function run(): Promise<string | void> {
     )
     // eslint-disable-next-line no-console
     console.log('after pm2')
-    const results = await pa11y('http://localhost:3000')
+    const results = await pa11y('http://localhost:3000', {
+      chromeLaunchConfig: {
+        executablePath: './node_modules/puppeteer/.local-chromium/linux-869685',
+        ignoreHTTPSErrors: false
+      }
+    })
     // eslint-disable-next-line no-console
     console.log(results)
 
