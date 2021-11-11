@@ -22,7 +22,7 @@ jobs:
       - name: Install PM2
         run: npm i -g pm2
       - name: Install Puppeteer
-        run: npm install puppeteer --save-dev
+        run: 'cd ./node_modules/puppeteer && npm run install'
       - uses: ./
         with:
           start: 'app:start'
