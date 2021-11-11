@@ -31,12 +31,7 @@ function run() {
             const { stdout } = yield (0, execa_1.command)(`pm2 start npm --name 'pa11y' -- run ${startScript}`);
             // eslint-disable-next-line no-console
             console.log('after pm2');
-            const results = yield (0, pa11y_1.default)('http://localhost:3000', {
-                chromeLaunchConfig: {
-                    executablePath: './node_modules/puppeteer/.local-chromium/linux-869685',
-                    ignoreHTTPSErrors: false
-                }
-            });
+            const results = yield (0, pa11y_1.default)('http://localhost:3000');
             // eslint-disable-next-line no-console
             console.log(results);
             return stdout;
