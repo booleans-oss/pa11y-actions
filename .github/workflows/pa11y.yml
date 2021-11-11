@@ -16,3 +16,4 @@ jobs:
       - uses: ./
         with:
           start: 'app:start'
+        run: pm2 start npm --name 'pa11y' -- run {{ start }}
