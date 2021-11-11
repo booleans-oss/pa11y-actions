@@ -14,8 +14,8 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - run: 'npm install'
-      - run: npm i pm2
-      - run: pm2 start npm --name 'pa11y' -- run {{ env.start }}
+      - run: npm i -g pm2
+      - run: pm2 start npm --name 'pa11y' -- run $start
       - uses: ./
         with:
           start: 'app:start'
