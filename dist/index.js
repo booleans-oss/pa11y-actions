@@ -22,15 +22,13 @@ Object.defineProperty(exports, "__esModule", ({ value: true }));
 const core_1 = __nccwpck_require__(2186);
 const exec_1 = __nccwpck_require__(1514);
 const pa11y_1 = __importDefault(__nccwpck_require__(4241));
+const wait_1 = __nccwpck_require__(5817);
 function run() {
     return __awaiter(this, void 0, void 0, function* () {
         const startScript = (0, core_1.getInput)('start');
         try {
-            // eslint-disable-next-line no-console
-            console.log('before pm2');
             yield (0, exec_1.getExecOutput)(`pm2 start npm --name 'pa11y' -- run ${startScript}`);
-            // eslint-disable-next-line no-console
-            console.log('after pm2');
+            yield (0, wait_1.wait)(10000);
             const results = yield (0, pa11y_1.default)('http://localhost:3000', {
                 chromeLaunchConfig: {
                     executablePath: '/opt/hostedtoolcache/chromium/latest/x64/chrome',
@@ -49,6 +47,37 @@ function run() {
     });
 }
 run();
+
+
+/***/ }),
+
+/***/ 5817:
+/***/ (function(__unused_webpack_module, exports) {
+
+"use strict";
+
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.wait = void 0;
+function wait(milliseconds) {
+    return __awaiter(this, void 0, void 0, function* () {
+        return new Promise(resolve => {
+            if (isNaN(milliseconds)) {
+                throw new Error('milliseconds not a number');
+            }
+            setTimeout(() => resolve('done!'), milliseconds);
+        });
+    });
+}
+exports.wait = wait;
 
 
 /***/ }),
