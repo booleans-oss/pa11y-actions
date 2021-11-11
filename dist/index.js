@@ -47,7 +47,7 @@ function fetchEmbed(payload) {
     let messageEmbed;
     if (payload.commits.length === 0) {
         messageEmbed = {
-            color: '7289d7',
+            color: 7506391,
             author: {
                 name: (_a = payload.sender) === null || _a === void 0 ? void 0 : _a.login,
                 icon_url: (_b = payload.sender) === null || _b === void 0 ? void 0 : _b.avatar_url,
@@ -59,7 +59,7 @@ function fetchEmbed(payload) {
     }
     else {
         messageEmbed = {
-            color: '7289d7',
+            color: 7506391,
             author: {
                 name: (_f = payload.sender) === null || _f === void 0 ? void 0 : _f.login,
                 icon_url: (_g = payload.sender) === null || _g === void 0 ? void 0 : _g.avatar_url,

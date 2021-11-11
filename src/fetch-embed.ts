@@ -17,7 +17,7 @@ interface Field {
 }
 export interface CustomEmbed {
   url?: string
-  color: string
+  color: number
   title: string
   author: Author
   description?: string
@@ -30,7 +30,7 @@ export default function fetchEmbed(payload: WebhookPayload): CustomEmbed {
   let messageEmbed
   if (payload.commits.length === 0) {
     messageEmbed = {
-      color: '7289d7',
+      color: 7506391,
       author: {
         name: payload.sender?.login,
         icon_url: payload.sender?.avatar_url,
@@ -45,7 +45,7 @@ export default function fetchEmbed(payload: WebhookPayload): CustomEmbed {
     }
   } else {
     messageEmbed = {
-      color: '7289d7',
+      color: 7506391,
       author: {
         name: payload.sender?.login,
         icon_url: payload.sender?.avatar_url,
