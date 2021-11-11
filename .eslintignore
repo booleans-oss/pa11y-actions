@@ -3,5 +3,4 @@ lib/
 node_modules/
 jest.config.js
 __tests__/
-app/
-app/node_modules/
+app.js
