@@ -13,6 +13,7 @@ jobs:
       start: 'app:start'
     steps:
       - uses: actions/checkout@v2
+      - run: ldd chrome | grep not
       - name: Install Node v16
         uses: actions/setup-node@v1
         with:
