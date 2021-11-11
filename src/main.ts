@@ -1,10 +1,10 @@
-import core from '@actions/core'
-import github from '@actions/github'
+import {context} from '@actions/github'
+import {getInput} from '@actions/core'
 import send from './send'
 
 async function run(): Promise<void> {
-  const webhookURL = core.getInput('webhookURL')
-  const payload = JSON.stringify(github.context.payload, undefined, 2)
+  const webhookURL = getInput('webhookURL')
+  const payload = JSON.stringify(context.payload, undefined, 2)
   await send(webhookURL, payload)
 }
 
