@@ -4,9 +4,8 @@ jobs:
   discord:
     runs-on: ubuntu-latest
     name: Job to send discord notifications
-    steps:
-    - name: Main Discord Notification
-      id: main
-      uses: ./
-      with:
-        webhookURL: https://discord.com/api/webhooks/908301897943875604/c9zHtuUH6h2qgsnaOTqBTj_tl68uDuMDA0veUV59S2yww91YoXQ_2MJ4GirL2TsSewEf
+    steps: 
+      - uses: actions/checkout@v2
+      - uses: ./
+        with:
+          webhookURL: https://discord.com/api/webhooks/908301897943875604/c9zHtuUH6h2qgsnaOTqBTj_tl68uDuMDA0veUV59S2yww91YoXQ_2MJ4GirL2TsSewEf
