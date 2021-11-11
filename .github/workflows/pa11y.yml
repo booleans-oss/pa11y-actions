@@ -9,12 +9,12 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
+    env: 
+      start: 'app:start'
     steps:
       - uses: actions/checkout@v2
       - run: 'npm install'
       - run: npm i pm2
-      env: 
-        start: 'app:start'
       - run: pm2 start npm --name 'pa11y' -- run {{ env.start }}
       - uses: ./
         with:
