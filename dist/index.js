@@ -29,6 +29,8 @@ function run() {
             // eslint-disable-next-line @typescript-eslint/no-explicit-any
         }
         catch (e) {
+            // eslint-disable-next-line no-console
+            console.log(e);
             return (0, core_1.setFailed)(e.message);
         }
     });
