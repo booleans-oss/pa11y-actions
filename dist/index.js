@@ -19,13 +19,16 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-const core_1 = __importDefault(__nccwpck_require__(2186));
-const github_1 = __importDefault(__nccwpck_require__(5438));
+/* eslint-disable no-console */
+const github_1 = __nccwpck_require__(5438);
+const core_1 = __nccwpck_require__(2186);
 const send_1 = __importDefault(__nccwpck_require__(9691));
 function run() {
     return __awaiter(this, void 0, void 0, function* () {
-        const webhookURL = core_1.default.getInput('webhookURL');
-        const payload = JSON.stringify(github_1.default.context.payload, undefined, 2);
+        console.log(core_1.getInput);
+        console.log(github_1.context.payload);
+        const webhookURL = (0, core_1.getInput)('webhookURL');
+        const payload = JSON.stringify(github_1.context.payload, undefined, 2);
         yield (0, send_1.default)(webhookURL, payload);
     });
 }
