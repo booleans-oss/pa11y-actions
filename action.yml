@@ -4,7 +4,7 @@ author: 'Osiris Group'
 inputs:
   start:
     required: true
-    description: 'startint script',
+    description: 'startint script'
     default: 'start'
 runs:
   using: 'node12'
