@@ -1,6 +1,10 @@
 name: 'ToBeDefined'
 description: 'Hackaton Github Actions'
 author: 'Osiris Group'
+inputs:
+  webhookURL:
+    required: true
+    description: 'Webhook URL'
 runs:
   using: 'node12'
   main: 'dist/index.js'
