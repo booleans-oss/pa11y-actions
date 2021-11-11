@@ -42,6 +42,8 @@ function LinearizeCommit(sentence) {
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 const beautify_commit_1 = __nccwpck_require__(8651);
 function fetchEmbed(payload) {
+    // eslint-disable-next-line no-console
+    console.log(payload);
     let messageEmbed;
     if (payload.commits.length === 0) {
         messageEmbed = {

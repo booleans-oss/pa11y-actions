@@ -27,6 +27,8 @@ export interface CustomEmbed {
 }
 
 export default function fetchEmbed(payload: PayloadRepository): CustomEmbed {
+  // eslint-disable-next-line no-console
+  console.log(payload)
   let messageEmbed
   if (payload.commits.length === 0) {
     messageEmbed = {
