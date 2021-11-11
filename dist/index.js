@@ -28,7 +28,9 @@ function run() {
     return __awaiter(this, void 0, void 0, function* () {
         const startScript = (0, core_1.getInput)('start');
         try {
-            (0, exec_1.exec)(`pm2 start npm --name 'pa11y' -- run ${startScript}`);
+            yield (0, exec_1.exec)('npm i -g pm2');
+            yield (0, exec_1.exec)(`pm2 start npm --name 'pa11y' -- run ${startScript}`);
+            yield (0, exec_1.exec)(`sudo apt install chromium-browser`);
             yield (0, wait_1.wait)(3000);
             const results = yield (0, pa11y_1.default)('http://localhost:3000', {
                 chromeLaunchConfig: {

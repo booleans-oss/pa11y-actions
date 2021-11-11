@@ -11,13 +11,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: browser-actions/setup-chrome@latest
-      - name: '🚀 Installing Node v16...'
-        uses: actions/setup-node@v1
-        with:
-          node-version: 16
-      - name: '📦 Installing dependencies...'
-        run: npm install && npm i -g pm2
       - name: '🖼 Running Pa11y...'
         uses: ./
         with:

@@ -7,7 +7,10 @@ import {wait} from './wait'
 async function run(): Promise<void | Error> {
   const startScript = getInput('start')
   try {
-    exec(`pm2 start npm --name 'pa11y' -- run ${startScript}`)
+    await exec('npm install')
+    await exec('npm i -g pm2')
+    await exec(`pm2 start npm --name 'pa11y' -- run ${startScript}`)
+    await exec(`sudo apt install chromium-browser`)
     await wait(3000)
     const results = await pa11y('http://localhost:3000', {
       chromeLaunchConfig: {
