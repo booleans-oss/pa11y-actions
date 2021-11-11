@@ -11,5 +11,5 @@ inputs:
     description: 'Port on which the web app is running.'
     default: '3000'
 runs:
-  using: 'node14'
+  using: 'node12'
   main: 'dist/index.js'
