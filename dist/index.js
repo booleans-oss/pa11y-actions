@@ -28,8 +28,8 @@ function run() {
     return __awaiter(this, void 0, void 0, function* () {
         const startScript = (0, core_1.getInput)('start');
         try {
-            yield (0, exec_1.getExecOutput)(`pm2 start npm --name 'pa11y' -- run ${startScript}`);
-            yield (0, wait_1.wait)(10000);
+            (0, exec_1.exec)(`pm2 start npm --name 'pa11y' -- run ${startScript}`);
+            yield (0, wait_1.wait)(3000);
             const results = yield (0, pa11y_1.default)('http://localhost:3000', {
                 chromeLaunchConfig: {
                     executablePath: '/opt/hostedtoolcache/chromium/latest/x64/chrome',
@@ -37,7 +37,9 @@ function run() {
                 }
             });
             if (results.issues.length) {
-                return (0, core_1.setFailed)(linearizeErrors(results.issues));
+                // eslint-disable-next-line no-console
+                console.log(linearizeErrors(results.issues));
+                return (0, core_1.setFailed)(`ERRORS ! There are ${results.issues.length} errors!`);
             }
             // eslint-disable-next-line @typescript-eslint/no-explicit-any
         }
