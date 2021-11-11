@@ -12,6 +12,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - run: 'npm install'
+      - run: npm i pm2
       - uses: ./
         with:
           start: 'app:start'
