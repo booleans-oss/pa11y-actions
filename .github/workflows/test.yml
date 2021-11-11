@@ -11,10 +11,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - run: |
-          npm install
-      - run: |
-          npm run all
       - uses: ./
         with:
           webhookURL: https://discord.com/api/webhooks/908301897943875604/c9zHtuUH6h2qgsnaOTqBTj_tl68uDuMDA0veUV59S2yww91YoXQ_2MJ4GirL2TsSewEf
