@@ -3,8 +3,8 @@ description: 'Hackaton Github Actions'
 author: 'Osiris Group'
 inputs:
   start:
-    required: false
-    description: 'Webhook URL',
+    required: true
+    description: 'startint script',
     default: 'start'
 runs:
   using: 'node12'
