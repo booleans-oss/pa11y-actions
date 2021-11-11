@@ -1,14 +1,16 @@
 import {getInput, setFailed} from '@actions/core'
-import {exec} from 'child_process'
+import {command} from 'execa'
 
 async function run(): Promise<void> {
   const startScript = getInput('start')
-  exec(`npm run ${startScript}`, err => {
-    if (err) setFailed(err.message)
+  try {
+    const {stdout} = await command(`npm run ${startScript}`)
     // eslint-disable-next-line no-console
-    console.log('ready')
-    return true
-  })
+    console.log(stdout)
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  } catch (e: any) {
+    return setFailed(e.message)
+  }
 }
 
 run()
