@@ -13,8 +13,14 @@ jobs:
       start: 'app:start'
     steps:
       - uses: actions/checkout@v2
-      - run: 'npm install'
-      - run: npm i -g pm2
+      - name: Install Node v16
+        uses: actions/setup-node@v1
+        with:
+          node-version: 16
+      - name: Install dependencies
+        run: 'npm install'
+      - name: Install PM2
+        run: npm i -g pm2
       - uses: ./
         with:
           start: 'app:start'
