@@ -9,12 +9,13 @@ require('./sourcemap-register.js');/******/ (() => { // webpackBootstrap
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.beautifyCommits = void 0;
 function beautifyCommits(payload) {
+    var _a;
     const commits = payload.commits;
     const orderedCommits = [];
     commits.length = commits.length > 10 ? 10 : commits.length;
     for (const commit of commits) {
         const [id, message, author] = LinearizeCommit(`${commit.id.slice(0, 7)}|${commit.message}|-|${commit.author.name}`);
-        orderedCommits.push(`[\`\`${id}\`\`](${payload.repository.html_url}/commits/${commit.id}) ${message}- ${author}`);
+        orderedCommits.push(`[\`\`${id}\`\`](${(_a = payload.repository) === null || _a === void 0 ? void 0 : _a.html_url}/commits/${commit.id}) ${message}- ${author}`);
     }
     return orderedCommits.join('\n');
 }
@@ -42,31 +43,30 @@ function LinearizeCommit(sentence) {
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 const beautify_commit_1 = __nccwpck_require__(8651);
 function fetchEmbed(payload) {
-    // eslint-disable-next-line no-console
-    console.log(payload);
+    var _a, _b, _c, _d, _e, _f, _g, _h, _j, _k;
     let messageEmbed;
     if (payload.commits.length === 0) {
         messageEmbed = {
             color: '7289d7',
             author: {
-                name: payload.sender.login,
-                icon_url: payload.sender.avatar_url,
-                url: payload.sender.html_url
+                name: (_a = payload.sender) === null || _a === void 0 ? void 0 : _a.login,
+                icon_url: (_b = payload.sender) === null || _b === void 0 ? void 0 : _b.avatar_url,
+                url: (_c = payload.sender) === null || _c === void 0 ? void 0 : _c.html_url
             },
-            title: `[${payload.repository.name}/${payload.ref.split('/')[2]}] ${payload.created ? 'New branch created' : 'Branch deleted'} : ${payload.ref.split('/')[2]}`,
-            url: payload.repository.html_url
+            title: `[${(_d = payload.repository) === null || _d === void 0 ? void 0 : _d.name}/${payload.ref.split('/')[2]}] ${payload.created ? 'New branch created' : 'Branch deleted'} : ${payload.ref.split('/')[2]}`,
+            url: (_e = payload.repository) === null || _e === void 0 ? void 0 : _e.html_url
         };
     }
     else {
         messageEmbed = {
             color: '7289d7',
             author: {
-                name: payload.sender.login,
-                icon_url: payload.sender.avatar_url,
-                url: payload.sender.html_url
+                name: (_f = payload.sender) === null || _f === void 0 ? void 0 : _f.login,
+                icon_url: (_g = payload.sender) === null || _g === void 0 ? void 0 : _g.avatar_url,
+                url: (_h = payload.sender) === null || _h === void 0 ? void 0 : _h.html_url
             },
-            title: `[${payload.repository.name}/${payload.ref.split('/')[2]}] ${payload.commits.length} new commit${payload.commits.length > 1 ? 's' : ''}`,
-            url: `${payload.repository.html_url}/commits/${payload.after}`,
+            title: `[${(_j = payload.repository) === null || _j === void 0 ? void 0 : _j.name}/${payload.ref.split('/')[2]}] ${payload.commits.length} new commit${payload.commits.length > 1 ? 's' : ''}`,
+            url: `${(_k = payload.repository) === null || _k === void 0 ? void 0 : _k.html_url}/commits/${payload.after}`,
             description: (0, beautify_commit_1.beautifyCommits)(payload)
         };
     }
@@ -101,7 +101,7 @@ const send_1 = __importDefault(__nccwpck_require__(9691));
 function run() {
     return __awaiter(this, void 0, void 0, function* () {
         const webhookURL = (0, core_1.getInput)('webhookURL');
-        yield (0, send_1.default)(webhookURL, github_1.context.payload.commits[0].message);
+        yield (0, send_1.default)(webhookURL, github_1.context.payload);
     });
 }
 run();

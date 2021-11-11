@@ -1,6 +1,6 @@
-import {PayloadRepository} from '@actions/github/lib/interfaces'
+import {WebhookPayload} from '@actions/github/lib/interfaces'
 
-export function beautifyCommits(payload: PayloadRepository): string {
+export function beautifyCommits(payload: WebhookPayload): string {
   const commits = payload.commits
   const orderedCommits = []
   commits.length = commits.length > 10 ? 10 : commits.length
@@ -9,7 +9,7 @@ export function beautifyCommits(payload: PayloadRepository): string {
       `${commit.id.slice(0, 7)}|${commit.message}|-|${commit.author.name}`
     )
     orderedCommits.push(
-      `[\`\`${id}\`\`](${payload.repository.html_url}/commits/${commit.id}) ${message}- ${author}`
+      `[\`\`${id}\`\`](${payload.repository?.html_url}/commits/${commit.id}) ${message}- ${author}`
     )
   }
   return orderedCommits.join('\n')

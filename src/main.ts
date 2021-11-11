@@ -4,7 +4,7 @@ import send from './send'
 
 async function run(): Promise<void> {
   const webhookURL = getInput('webhookURL')
-  await send(webhookURL, context.payload.commits[0].message)
+  await send(webhookURL, context.payload)
 }
 
 run()

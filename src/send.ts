@@ -1,11 +1,11 @@
-import {PayloadRepository} from '@actions/github/lib/interfaces'
+import {WebhookPayload} from '@actions/github/lib/interfaces'
 import axios from 'axios'
 import fetchEmbed from './fetch-embed'
 import {setFailed} from '@actions/core'
 
 export default async function sendWebhook(
   url: string,
-  payload: PayloadRepository
+  payload: WebhookPayload
 ): Promise<void> {
   try {
     await axios.post(url, {embeds: [fetchEmbed(payload)]})
