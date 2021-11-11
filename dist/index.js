@@ -25,6 +25,7 @@ function run() {
             const { stdout } = yield (0, execa_1.command)(`npm run ${startScript}`);
             // eslint-disable-next-line no-console
             console.log(stdout);
+            return stdout;
             // eslint-disable-next-line @typescript-eslint/no-explicit-any
         }
         catch (e) {
