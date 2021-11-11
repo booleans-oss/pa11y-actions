@@ -26,6 +26,7 @@ function run() {
                 (0, core_1.setFailed)(err.message);
             // eslint-disable-next-line no-console
             console.log('ready');
+            return true;
         });
     });
 }

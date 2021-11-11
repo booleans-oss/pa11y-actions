@@ -7,6 +7,7 @@ async function run(): Promise<void> {
     if (err) setFailed(err.message)
     // eslint-disable-next-line no-console
     console.log('ready')
+    return true
   })
 }
 
