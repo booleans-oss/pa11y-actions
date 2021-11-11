@@ -1,6 +1,80 @@
 require('./sourcemap-register.js');/******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
+/***/ 8651:
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.beautifyCommits = void 0;
+function beautifyCommits(payload) {
+    const commits = payload.commits;
+    const orderedCommits = [];
+    commits.length = commits.length > 10 ? 10 : commits.length;
+    for (const commit of commits) {
+        const [id, message, author] = LinearizeCommit(`${commit.id.slice(0, 7)}|${commit.message}|-|${commit.author.name}`);
+        orderedCommits.push(`[\`\`${id}\`\`](${payload.repository.html_url}/commits/${commit.id}) ${message}- ${author}`);
+    }
+    return orderedCommits.join('\n');
+}
+exports.beautifyCommits = beautifyCommits;
+function LinearizeCommit(sentence) {
+    // eslint-disable-next-line prefer-const
+    let [id, message, separator, auteur] = sentence.split('|');
+    if (id.length + message.length + separator.length + auteur.length > 73) {
+        do {
+            message = message.split('').slice(0, -1).join('');
+        } while (id.length + message.length + separator.length + auteur.length > 70);
+        message = `${message}... `;
+    }
+    return [id, message, auteur];
+}
+
+
+/***/ }),
+
+/***/ 4918:
+/***/ ((__unused_webpack_module, exports, __nccwpck_require__) => {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+const beautify_commit_1 = __nccwpck_require__(8651);
+function fetchEmbed(payload) {
+    let messageEmbed;
+    if (payload.commits.length === 0) {
+        messageEmbed = {
+            color: '7289d7',
+            author: {
+                name: payload.sender.login,
+                icon_url: payload.sender.avatar_url,
+                url: payload.sender.html_url
+            },
+            title: `[${payload.repository.name}/${payload.ref.split('/')[2]}] ${payload.created ? 'New branch created' : 'Branch deleted'} : ${payload.ref.split('/')[2]}`,
+            url: payload.repository.html_url
+        };
+    }
+    else {
+        messageEmbed = {
+            color: '7289d7',
+            author: {
+                name: payload.sender.login,
+                icon_url: payload.sender.avatar_url,
+                url: payload.sender.html_url
+            },
+            title: `[${payload.repository.name}/${payload.ref.split('/')[2]}] ${payload.commits.length} new commit${payload.commits.length > 1 ? 's' : ''}`,
+            url: `${payload.repository.html_url}/commits/${payload.after}`,
+            description: (0, beautify_commit_1.beautifyCommits)(payload)
+        };
+    }
+    return messageEmbed;
+}
+exports.default = fetchEmbed;
+
+
+/***/ }),
+
 /***/ 3109:
 /***/ (function(__unused_webpack_module, exports, __nccwpck_require__) {
 
@@ -25,8 +99,6 @@ const send_1 = __importDefault(__nccwpck_require__(9691));
 function run() {
     return __awaiter(this, void 0, void 0, function* () {
         const webhookURL = (0, core_1.getInput)('webhookURL');
-        // eslint-disable-next-line no-console
-        console.log(webhookURL);
         yield (0, send_1.default)(webhookURL, github_1.context.payload.commits[0].message);
     });
 }
@@ -54,11 +126,12 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 const axios_1 = __importDefault(__nccwpck_require__(6545));
+const fetch_embed_1 = __importDefault(__nccwpck_require__(4918));
 const core_1 = __nccwpck_require__(2186);
 function sendWebhook(url, payload) {
     return __awaiter(this, void 0, void 0, function* () {
         try {
-            yield axios_1.default.post(url, { content: payload });
+            yield axios_1.default.post(url, { embeds: [(0, fetch_embed_1.default)(payload)] });
             // eslint-disable-next-line @typescript-eslint/no-explicit-any
         }
         catch (error) {
