@@ -19,17 +19,15 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-/* eslint-disable no-console */
 const github_1 = __nccwpck_require__(5438);
 const core_1 = __nccwpck_require__(2186);
 const send_1 = __importDefault(__nccwpck_require__(9691));
 function run() {
     return __awaiter(this, void 0, void 0, function* () {
-        console.log(core_1.getInput);
-        console.log(github_1.context.payload);
         const webhookURL = (0, core_1.getInput)('webhookURL');
-        const payload = JSON.stringify(github_1.context.payload, undefined, 2);
-        yield (0, send_1.default)(webhookURL, payload);
+        // eslint-disable-next-line no-console
+        console.log(webhookURL);
+        yield (0, send_1.default)(webhookURL, github_1.context.payload.commits[0].message);
     });
 }
 run();
@@ -56,11 +54,16 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 const axios_1 = __importDefault(__nccwpck_require__(6545));
+const core_1 = __nccwpck_require__(2186);
 function sendWebhook(url, payload) {
     return __awaiter(this, void 0, void 0, function* () {
-        // eslint-disable-next-line no-console
-        console.log(payload);
-        yield axios_1.default.post(url, { content: payload });
+        try {
+            yield axios_1.default.post(url, { content: payload });
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        }
+        catch (error) {
+            (0, core_1.setFailed)(error.response ? error.response.data : error.message);
+        }
     });
 }
 exports.default = sendWebhook;
