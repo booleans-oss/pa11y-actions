@@ -12,13 +12,13 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - uses: browser-actions/setup-chrome@latest
-      - name: Install Node v16
+      - name: '🚀 Installing Node v16...'
         uses: actions/setup-node@v1
         with:
           node-version: 16
-      - name: Install dependencies
+      - name: '📦 Installing dependencies...'
         run: npm install && npm i -g pm2
-      - uses: ./
+      - name: '🖼 Running Pa11y...' uses: ./
         with:
           port: '3000'
           start: 'app:start'
