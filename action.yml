@@ -11,9 +11,10 @@ inputs:
     description: 'Port on which the web app is running.'
     default: '3000'
 runs:
-  using: 'node12'
+  using: "composite"
   steps:
     - uses: browser-actions/setup-chrome@latest
     - uses: ./
     with:
-      start: app:start
+      port: '3000'
+      start: 'app:start'
