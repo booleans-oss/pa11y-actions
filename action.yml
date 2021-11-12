@@ -15,6 +15,3 @@ runs:
   steps:
     - uses: browser-actions/setup-chrome@latest
     - uses: ./
-    with:
-      port: '3000'
-      start: 'app:start'
