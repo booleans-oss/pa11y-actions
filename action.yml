@@ -12,4 +12,6 @@ inputs:
     default: '3000'
 runs:
   using: 'node12'
-  main: 'dist/index.js'
+  steps:
+    - uses: browser-actions/setup-chrome@latest
+    - run: node dist/index.js

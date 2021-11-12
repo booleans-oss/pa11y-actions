@@ -24,7 +24,6 @@ const chalk_1 = __importDefault(__nccwpck_require__(8818));
 const exec_1 = __nccwpck_require__(1514);
 const pa11y_1 = __importDefault(__nccwpck_require__(4241));
 const wait_1 = __nccwpck_require__(5817);
-const io_1 = __nccwpck_require__(7436);
 function run() {
     return __awaiter(this, void 0, void 0, function* () {
         const startScript = (0, core_1.getInput)('start');
@@ -33,14 +32,12 @@ function run() {
                 yield (0, exec_1.exec)('npm install');
                 yield (0, exec_1.exec)('npm i -g pm2');
                 yield (0, exec_1.exec)(`pm2 start npm --name 'pa11y' -- run ${startScript}`);
-                yield (0, exec_1.exec)(`sudo apt install chromium-browser`);
                 return;
             }));
             yield (0, wait_1.wait)(3000);
-            const chromePath = yield (0, io_1.which)('chrome', true);
             const results = yield (0, pa11y_1.default)('http://localhost:3000', {
                 chromeLaunchConfig: {
-                    executablePath: chromePath,
+                    executablePath: '/opt/hostedtoolcache/chromium/latest/x64/chrome',
                     ignoreHTTPSErrors: false
                 }
             });
