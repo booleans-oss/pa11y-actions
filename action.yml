@@ -15,4 +15,4 @@ runs:
   steps:
     - uses: browser-actions/setup-chrome@latest
     - run: node dist/index.js
-    shell: powershell
+      shell: powershell
