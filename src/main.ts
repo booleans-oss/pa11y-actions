@@ -1,20 +1,25 @@
-import {getInput, setFailed} from '@actions/core'
+import {getInput, group, setFailed} from '@actions/core'
 import chalk from 'chalk'
 import {exec} from '@actions/exec'
 import pa11y from 'pa11y'
 import {wait} from './wait'
+import {which} from '@actions/io'
 
 async function run(): Promise<void | Error> {
   const startScript = getInput('start')
   try {
-    await exec('npm install')
-    await exec('npm i -g pm2')
-    await exec(`pm2 start npm --name 'pa11y' -- run ${startScript}`)
-    await exec(`sudo apt install chromium-browser`)
+    await group('📦 Installing dependencies ...', async () => {
+      await exec('npm install')
+      await exec('npm i -g pm2')
+      await exec(`pm2 start npm --name 'pa11y' -- run ${startScript}`)
+      await exec(`sudo apt install chromium-browser`)
+      return
+    })
     await wait(3000)
+    const chromePath = await which('chrome', true)
     const results = await pa11y('http://localhost:3000', {
       chromeLaunchConfig: {
-        executablePath: '/opt/hostedtoolcache/chromium/latest/x64/chrome',
+        executablePath: chromePath,
         ignoreHTTPSErrors: false
       }
     })
