@@ -1,0 +1,19 @@
+name: 'payy1'
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+      - dev
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: browser-actions/setup-chrome@latest
+      - name: '🖼 Running Pa11y...'
+        uses: ./
+        with:
+          port: '3000'
+          start: 'app:start'

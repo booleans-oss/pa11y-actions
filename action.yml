@@ -1,10 +1,15 @@
-name: 'ToBeDefined'
-description: 'Hackaton Github Actions'
+name: 'Pa11y Actions'
+description: 'Pa11y Actions to detect accessibilty issues'
 author: 'Osiris Group'
 inputs:
-  webhookURL:
+  start:
     required: true
-    description: 'Webhook URL'
+    description: 'Starting Script (in the package.json).'
+    default: 'node app.js'
+  port:
+    required: true
+    description: 'Port on which the web app is running.'
+    default: '3000'
 runs:
-  using: 'node12'
-  main: 'dist/index.js'
+  using: node12
+  main: dist/index.js

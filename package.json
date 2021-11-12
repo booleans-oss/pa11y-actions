@@ -1,8 +1,8 @@
 {
-  "name": "hackaton-action",
-  "version": "0.0.0",
+  "name": "pa11y-actions",
+  "version": "1.0.0",
   "private": true,
-  "description": "Github Actions for Hackaton",
+  "description": "Github Actions for the accessibility package Pa11y.",
   "main": "lib/main.js",
   "scripts": {
     "build": "tsc",
@@ -11,7 +11,8 @@
     "lint": "eslint src/**/*.ts",
     "package": "ncc build --source-map --license licenses.txt",
     "test": "jest",
-    "all": "npm run build && npm run format && npm run lint && npm run package && npm test"
+    "all": "npm run build && npm run format && npm run lint && npm run package && npm test",
+    "app:start": "node app.js"
   },
   "repository": {
     "type": "git",
@@ -26,20 +27,25 @@
   "license": "MIT",
   "dependencies": {
     "@actions/core": "^1.6.0",
+    "@actions/exec": "^1.1.0",
     "@actions/github": "^5.0.0",
-    "axios": "^0.24.0"
+    "@actions/tool-cache": "^1.7.1",
+    "chalk": "^4.1.2",
+    "pa11y": "^6.1.0"
   },
   "devDependencies": {
-    "@types/node": "^16.10.5",
+    "@types/node": "^16.11.7",
+    "@types/pa11y": "^5.3.3",
     "@typescript-eslint/parser": "^5.3.1",
     "@vercel/ncc": "^0.31.1",
     "eslint": "^8.2.0",
-    "eslint-plugin-github": "^4.3.2",
-    "eslint-plugin-jest": "^25.0.5",
-    "jest": "^27.2.5",
+    "eslint-plugin-github": "^4.3.4",
+    "eslint-plugin-jest": "^25.2.4",
+    "express": "^4.17.1",
+    "jest": "^27.3.1",
     "js-yaml": "^4.1.0",
     "prettier": "2.4.1",
-    "ts-jest": "^27.0.5",
+    "ts-jest": "^27.0.7",
     "typescript": "^4.4.4"
   }
 }
