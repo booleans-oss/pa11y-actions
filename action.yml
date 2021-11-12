@@ -11,7 +11,7 @@ inputs:
     description: 'Port on which the web app is running.'
     default: '3000'
 runs:
-  using: 'node12'
+  using: 'composite'
   steps:
     - uses: browser-actions/setup-chrome@latest
     - run: node dist/index.js
