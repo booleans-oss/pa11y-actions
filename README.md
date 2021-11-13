@@ -19,6 +19,8 @@ steps:
     port: '3000'
 ```
 
+**browser-actions/setup-chrome@latest** is needed for this action to work. Make sure you put the chrome Github Action before pa11y-actions.
+
 Both `port` and `start` inputs are optional. If not supplied, the port would be set as **'3000'** and the running script would be set as **'start'**.
 
 The action will firstly installed your project dependencies. The web application will, then, be started with the script provided ``npm run start`` by default. Then, pa11y will analyse the resultant web app running on the port set ( by default: ``3000``). If results, the workflow will fail and print the results. If no result, the worklow passes.
