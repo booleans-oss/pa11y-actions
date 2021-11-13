@@ -1,4 +1,4 @@
-name: 'payy1'
+name: 'payy1-test'
 on:
   pull_request:
   push:
