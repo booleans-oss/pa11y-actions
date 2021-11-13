@@ -1,7 +1,7 @@
 # pa11y-actions
 <p align="left">
-  <a href="https://github.com/actions/pa11y-actions/actions?query=workflow%3Abuild-test"><img alt="build-test status" src="https://github.com/actions/pa11y-actions/workflows/build-test/badge.svg"></a> 
-  <a href="https://github.com/actions/pa11y-actions/actions?query=workflow%3Acheck-dist"><img alt="check-dist status" src="https://github.com/actions/pa11y-actions/workflows/check-dist/badge.svg"></a>  <a href="https://github.com/actions/pa11y-actions/actions?query=workflow%3Apa11y"><img alt="pa11y status" src="https://github.com/actions/pa11y-actions/workflows/pa11y/badge.svg"></a> 
+  <a href="https://github.com/Hesedi3l/pa11y-actions/actions?query=workflow%3Abuild-test"><img alt="build-test status" src="https://github.com/Hesedi3l/pa11y-actions/workflows/build-test/badge.svg"></a> 
+  <a href="https://github.com/Hesedi3l/pa11y-actions/actions?query=workflow%3Acheck-dist"><img alt="check-dist status" src="https://github.com/Hesedi3l/pa11y-actionsworkflows/check-dist/badge.svg"></a>  <a href="https://github.com/Hesedi3l/pa11y-actions/actions?query=workflow%3Apa11y"><img alt="pa11y status" src="https://github.com/Hesedi3l/pa11y-actions/workflows/pa11y/badge.svg"></a> 
 </p>
 
 # Usage
