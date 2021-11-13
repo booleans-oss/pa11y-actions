@@ -1,17 +1,27 @@
-name: 'build-test'
+name: build-test
+
 on:
   pull_request:
-  push:
+    paths-ignore:
+      - '**.md'    
+  push:    
     branches:
       - main
-      - dev
-
+      - releases/*
+    paths-ignore:
+      - '**.md'
+     
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
     steps:
       - uses: actions/checkout@v2
-      - run: |
-          npm install
-      - run: |
-          npm run all
+      - name: Setup node 12
+        uses: actions/setup-node@v2
+        with:
+          node-version: 12.x
+      - run: npm ci
+      - run: npm run all
