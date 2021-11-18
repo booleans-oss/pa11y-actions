@@ -31,7 +31,7 @@
     "@actions/github": "^5.0.0",
     "@actions/tool-cache": "^1.7.1",
     "chalk": "^4.1.2",
-    "pa11y": "^6.1.0"
+    "pa11y": "^6.1.1"
   },
   "devDependencies": {
     "@types/node": "^16.11.7",
